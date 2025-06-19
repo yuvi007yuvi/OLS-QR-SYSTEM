@@ -81,7 +81,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onClose, isActive 
     <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
       <div className="relative w-full h-full max-w-md mx-auto">
         {/* Header */}
-        <div className="absolute top-4 left-4 right-4 z-10 flex justify-between items-center">
+        <div className="absolute top-8 left-4 right-4 z-10 flex justify-between items-center" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
           <div className="flex items-center text-white">
             <span className="font-semibold">Scan QR Code</span>
           </div>
