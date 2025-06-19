@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { Building2, FileText, Upload, Scan, MapPin, Home } from 'lucide-react';
+import { Building2, FileText, Scan, MapPin, Home } from 'lucide-react';
 import QRAssistLogo from '../assets/LOGO.png';
 
 interface SidebarProps {
@@ -108,16 +108,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           <Scan className={`h-4 w-4 ${isOpen ? 'mr-2' : 'hidden md:block'}`} />
           <span className={`${isOpen ? '' : 'hidden'}`}>QR Scanner</span>
         </Link>
-        <Link
-          to="/upload/example-qrcode-id" // Replace with actual dynamic route if needed
-          className={`flex items-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${location.pathname.startsWith('/upload')
-              ? 'bg-yellow-100 text-yellow-700'
-              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
-            }`}
-        >
-          <Upload className={`h-4 w-4 ${isOpen ? 'mr-2' : 'hidden md:block'}`} />
-          <span className={`${isOpen ? '' : 'hidden'}`}>Upload via QR</span>
-        </Link>
+
       </nav>
     </div>
   );
