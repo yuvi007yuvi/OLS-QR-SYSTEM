@@ -10,6 +10,8 @@ import ReportsPage from './pages/ReportsPage';
 import ScannerPage from './pages/ScannerPage';
 import EditQRPage from './pages/EditQRPage';
 import { Menu } from 'lucide-react';
+import ProtectedRoute from './components/ProtectedRoute';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -42,12 +44,13 @@ function App() {
               <Route path="/upload/:qrcodeid" element={<UploadPage />} />
               <Route path="/scanner" element={<ScannerPage />} />
               <Route path="/edit-qr/:qrCodeId" element={<EditQRPage />} />
+              <Route path="/login" element={<LoginPage />} />
               
               {/* Routes with sidebar */}
               <Route path="/" element={<HomePage />} />
               <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/map" element={<MapPage />} />
-              <Route path="/reports" element={<ReportsPage />} />
+              <Route path="/map" element={<ProtectedRoute><MapPage /></ProtectedRoute>} />
+              <Route path="/reports" element={<ProtectedRoute><ReportsPage /></ProtectedRoute>} />
             </Routes>
           </div>
         </div>
