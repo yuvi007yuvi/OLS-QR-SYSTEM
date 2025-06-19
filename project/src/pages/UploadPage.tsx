@@ -193,7 +193,7 @@ const UploadPage: React.FC = () => {
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
                   <Camera className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-600 mb-4">Upload the before photo</p>
-                  <label className="cursor-pointer">
+                  <label className={`cursor-pointer ${!uploadStatus.before ? 'pointer-events-none' : ''}`}>
                     <input
                       type="file"
                       accept="image/*"
@@ -222,7 +222,7 @@ const UploadPage: React.FC = () => {
           </div>
 
           {/* After Photo Upload */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className={`bg-white rounded-lg shadow-lg p-6 ${!uploadStatus.before ? 'opacity-50 cursor-not-allowed' : ''}`}>
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900">After Photo</h3>
               {uploadStatus.after && (
@@ -257,7 +257,7 @@ const UploadPage: React.FC = () => {
                         const file = e.target.files?.[0];
                         if (file) handleFileUpload(file, 'after');
                       }}
-                      disabled={uploadingAfter}
+                      disabled={uploadingAfter || !uploadStatus.before}
                     />
                     <span className="inline-flex items-center px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors disabled:opacity-50">
                       {uploadingAfter ? (
