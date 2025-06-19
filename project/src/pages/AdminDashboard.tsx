@@ -17,6 +17,8 @@ interface LocationForm {
 }
 
 const AdminDashboard: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [generatedQR, setGeneratedQR] = useState<LocationForm | null>(null);
   const [qrError, setQrError] = useState<string>('');
@@ -35,6 +37,16 @@ const AdminDashboard: React.FC = () => {
 
   const watchedLatitude = watch('latitude');
   const watchedLongitude = watch('longitude');
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Replace with your desired password
+    if (passwordInput === 'admin123') { 
+      setIsAuthenticated(true);
+    } else {
+      alert('Incorrect password');
+    }
+  };
 
   const validateQRCode = async (qrCodeId: string) => {
     if (qrCodeId.length < 6) {
@@ -106,6 +118,35 @@ const AdminDashboard: React.FC = () => {
   const generateUploadUrl = (qrCodeId: string) => {
     return `${window.location.origin}/upload/${qrCodeId}`;
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Admin Login</h2>
+          <form onSubmit={handlePasswordSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+              <input
+                type="password"
+                id="password"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white">
