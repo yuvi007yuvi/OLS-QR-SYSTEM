@@ -15,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 flex flex-col h-screen bg-white shadow-lg transition-all duration-300 z-30 ${isOpen ? 'w-64' : 'w-20'}`}
+      className={`fixed top-0 left-0 flex flex-col h-screen bg-white shadow-lg transition-all duration-300 z-30 ${isOpen ? 'w-64' : 'w-0 md:w-20'}`} 
       style={{ overflowX: 'hidden' }}
     >
       <div className="flex items-center justify-center h-16 border-b border-gray-200 px-4">
@@ -32,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
             }`}
         >
-          <Home className={`h-4 w-4 ${isOpen ? 'mr-2' : ''}`} />
+          <Home className={`h-4 w-4 ${isOpen ? 'mr-2' : 'hidden md:block'}`} />
           <span className={`${isOpen ? '' : 'hidden'}`}>Home</span>
         </Link>
         <Link
@@ -42,7 +42,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
             }`}
         >
-          <Building2 className={`h-4 w-4 ${isOpen ? 'mr-2' : ''}`} />
+          <Building2 className={`h-4 w-4 ${isOpen ? 'mr-2' : 'hidden md:block'}`} />
           <span className={`${isOpen ? '' : 'hidden'}`}>Admin Dashboard</span>
         </Link>
         <Link
@@ -52,7 +52,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
             }`}
         >
-          <MapPin className={`h-4 w-4 ${isOpen ? 'mr-2' : ''}`} />
+          <MapPin className={`h-4 w-4 ${isOpen ? 'mr-2' : 'hidden md:block'}`} />
           <span className={`${isOpen ? '' : 'hidden'}`}>Location Map</span>
         </Link>
         <Link
@@ -62,7 +62,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
             }`}
         >
-          <FileText className={`h-4 w-4 ${isOpen ? 'mr-2' : ''}`} />
+          <FileText className={`h-4 w-4 ${isOpen ? 'mr-2' : 'hidden md:block'}`} />
           <span className={`${isOpen ? '' : 'hidden'}`}>Reports</span>
         </Link>
         <Link
@@ -72,7 +72,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
             }`}
         >
-          <Scan className={`h-4 w-4 ${isOpen ? 'mr-2' : ''}`} />
+          <Scan className={`h-4 w-4 ${isOpen ? 'mr-2' : 'hidden md:block'}`} />
           <span className={`${isOpen ? '' : 'hidden'}`}>QR Scanner</span>
         </Link>
         <Link
@@ -82,7 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
             }`}
         >
-          <Upload className={`h-4 w-4 ${isOpen ? 'mr-2' : ''}`} />
+          <Upload className={`h-4 w-4 ${isOpen ? 'mr-2' : 'hidden md:block'}`} />
           <span className={`${isOpen ? '' : 'hidden'}`}>Upload via QR</span>
         </Link>
       </nav>
