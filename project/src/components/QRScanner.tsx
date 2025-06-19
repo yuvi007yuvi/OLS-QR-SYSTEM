@@ -17,7 +17,16 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onClose, isActive 
   const [scanResult, setScanResult] = useState<string>('');
 
   useEffect(() => {
-    if (!isActive || !videoRef.current) return;
+    if (!isActive || !videoRef.current) {
+      if (scannerRef.current) {
+        scannerRef.current.stop();
+        scannerRef.current.destroy();
+        scannerRef.current = null;
+      }
+      return;
+    }
+
+    if (scannerRef.current) return; // Scanner already initialized
 
     const initScanner = async () => {
       try {
@@ -43,6 +52,8 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onClose, isActive 
             highlightCodeOutline: true,
             preferredCamera: 'environment', // Use back camera
             maxScansPerSecond: 5,
+            // Optimize canvas for frequent readbacks
+            canvas: { willReadFrequently: true }
           }
         );
 
