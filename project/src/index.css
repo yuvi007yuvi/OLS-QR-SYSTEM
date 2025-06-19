@@ -14,7 +14,7 @@ body {
 
 /* Custom marker popup styles */
 .leaflet-popup-content-wrapper {
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 .leaflet-popup-content {

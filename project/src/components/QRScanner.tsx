@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import QrScanner from 'qr-scanner';
-import { Camera, X, Scan, AlertCircle, CheckCircle } from 'lucide-react';
+import { X, AlertCircle, CheckCircle } from 'lucide-react';
 
 interface QRScannerProps {
   onScanSuccess: (result: string) => void;
@@ -12,7 +12,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onClose, isActive 
   const videoRef = useRef<HTMLVideoElement>(null);
   const scannerRef = useRef<QrScanner | null>(null);
   const [hasCamera, setHasCamera] = useState(true);
-  const [isScanning, setIsScanning] = useState(false);
+
   const [error, setError] = useState<string>('');
   const [scanResult, setScanResult] = useState<string>('');
 
@@ -35,7 +35,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onClose, isActive 
           videoRef.current!,
           (result) => {
             setScanResult(result.data);
-            setIsScanning(false);
+
             onScanSuccess(result.data);
           },
           {
@@ -48,7 +48,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onClose, isActive 
 
         scannerRef.current = scanner;
         await scanner.start();
-        setIsScanning(true);
+
         setError('');
       } catch (err) {
         console.error('Error initializing scanner:', err);
@@ -83,7 +83,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onClose, isActive 
         {/* Header */}
         <div className="absolute top-4 left-4 right-4 z-10 flex justify-between items-center">
           <div className="flex items-center text-white">
-            <Scan className="h-6 w-6 mr-2" />
             <span className="font-semibold">Scan QR Code</span>
           </div>
           <button
@@ -116,10 +115,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onClose, isActive 
                     <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-blue-400"></div>
                     <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-blue-400"></div>
                     
-                    {/* Scanning line animation */}
-                    {isScanning && (
-                      <div className="absolute top-0 left-0 w-full h-1 bg-blue-400 animate-pulse"></div>
-                    )}
+
                   </div>
                 </div>
               </div>
@@ -128,7 +124,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ onScanSuccess, onClose, isActive 
               <div className="absolute bottom-20 left-4 right-4 text-center">
                 <div className="bg-black bg-opacity-70 rounded-lg p-4 text-white">
                   <p className="text-sm">
-                    {isScanning ? 'Position QR code within the frame' : 'Starting camera...'}
+                    Position QR code within the frame
                   </p>
                   {scanResult && (
                     <div className="mt-2 flex items-center justify-center text-green-400">

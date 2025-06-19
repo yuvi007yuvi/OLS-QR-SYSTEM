@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Scan, Upload, Camera, QrCode, ArrowRight, Smartphone, Globe } from 'lucide-react';
+import { Scan, Upload, QrCode, ArrowRight, Smartphone, Globe } from 'lucide-react';
 import QRScanner from '../components/QRScanner';
 
 const ScannerPage: React.FC = () => {
@@ -78,7 +78,7 @@ const ScannerPage: React.FC = () => {
               onClick={startScanning}
               className="inline-flex items-center px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-xl hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
-              <Camera className="h-6 w-6 mr-3" />
+
               Start QR Scanner
               <ArrowRight className="h-5 w-5 ml-2" />
             </button>
