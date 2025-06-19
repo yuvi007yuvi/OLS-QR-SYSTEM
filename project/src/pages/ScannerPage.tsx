@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Scan, Upload, QrCode, ArrowRight, Smartphone, Globe } from 'lucide-react';
 import QRScanner from '../components/QRScanner';
 
 const ScannerPage: React.FC = () => {
-  const [showScanner, setShowScanner] = useState(false);
+  const [showScanner, setShowScanner] = useState(window.innerWidth < 768); // Open scanner by default on mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setShowScanner(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const [scannedUrl, setScannedUrl] = useState<string>('');
   const navigate = useNavigate();
 
@@ -73,16 +80,17 @@ const ScannerPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex justify-center">
-            <button
-              onClick={startScanning}
-              className="inline-flex items-center px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-xl hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-
-              Start QR Scanner
-              <ArrowRight className="h-5 w-5 ml-2" />
-            </button>
-          </div>
+          {!showScanner && (
+            <div className="flex justify-center">
+              <button
+                onClick={startScanning}
+                className="inline-flex items-center px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-xl hover:bg-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Start QR Scanner
+                <ArrowRight className="h-5 w-5 ml-2" />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* How it Works */}
@@ -162,12 +170,13 @@ const ScannerPage: React.FC = () => {
       </div>
 
       {/* QR Scanner Component */}
-      <QRScanner
-        isActive={showScanner}
-        onScanSuccess={handleScanSuccess}
-        onClose={() => setShowScanner(false)}
-      />
-    </div>
+        {showScanner && (
+          <QRScanner
+            isActive={showScanner}
+            onScanSuccess={handleScanSuccess}
+            onClose={() => setShowScanner(false)}
+          />
+        )}</div>
   );
 };
 
