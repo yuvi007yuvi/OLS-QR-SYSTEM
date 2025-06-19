@@ -11,6 +11,7 @@ interface LocationForm {
   area: string;
   supervisorName: string;
   contactNumber: string;
+  locationType: string;
   latitude: number;
   longitude: number;
 }
@@ -205,7 +206,7 @@ const AdminDashboard: React.FC = () => {
                 <div className="relative">
                   <input
                     type="tel"
-                    {...register('contactNumber', { 
+                    {...register('contactNumber', {
                       required: 'Contact number is required',
                       pattern: {
                         value: /^[0-9]{10}$/,
@@ -219,6 +220,24 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 {errors.contactNumber && (
                   <p className="mt-1 text-sm text-red-600">{errors.contactNumber.message}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-800 mb-2">
+                  Location Type
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    {...register('locationType', { required: 'Location type is required' })}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    placeholder="e.g., Residential, Commercial, Public"
+                  />
+                  <Building className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
+                </div>
+                {errors.locationType && (
+                  <p className="mt-1 text-sm text-red-600">{errors.locationType.message}</p>
                 )}
               </div>
 
@@ -337,6 +356,7 @@ const AdminDashboard: React.FC = () => {
                 area={generatedQR.area}
                 supervisorName={generatedQR.supervisorName}
                 contactNumber={generatedQR.contactNumber}
+                locationType={generatedQR.locationType}
                 uploadUrl={generateUploadUrl(generatedQR.qrCodeId)}
               />
             ) : (

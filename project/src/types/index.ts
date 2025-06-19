@@ -5,6 +5,7 @@ export interface Location {
   area: string;
   supervisorName: string;
   contactNumber: string;
+  locationType: string;
   latitude: number;
   longitude: number;
   createdAt: Date | { toDate: () => Date };

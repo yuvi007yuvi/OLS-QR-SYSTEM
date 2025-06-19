@@ -27,7 +27,7 @@ function App() {
     >
       <div className="min-h-screen bg-gray-50 flex">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'} relative z-10`}>
+        <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'} relative z-10`}>
           <div className="p-4">
             <button
               onClick={toggleSidebar}

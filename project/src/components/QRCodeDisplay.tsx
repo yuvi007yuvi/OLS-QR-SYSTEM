@@ -10,6 +10,7 @@ interface QRCodeDisplayProps {
   area: string;
   supervisorName: string;
   contactNumber: string;
+  locationType: string;
   uploadUrl: string;
 }
 
@@ -19,6 +20,7 @@ const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
   area,
   supervisorName,
   contactNumber,
+  locationType,
   uploadUrl
 }) => {
   const qrRef = useRef<HTMLDivElement>(null);
@@ -123,6 +125,10 @@ const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
             <div className="flex">
               <span className="font-semibold w-32">AREA:</span>
               <span>{area}</span>
+            </div>
+            <div className="flex">
+              <span className="font-semibold w-32">LOCATION TYPE:</span>
+              <span>{locationType}</span>
             </div>
             <div className="flex">
               <span className="font-semibold w-32">SUPERVISOR:</span>

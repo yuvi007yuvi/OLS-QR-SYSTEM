@@ -14,10 +14,17 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../config/firebase';
 import { Location, PhotoUpload } from '../types';
 
-export const createLocation = async (locationData: Omit<Location, 'id' | 'createdAt'>) => {
+export const createLocation = async (locationData: Omit<Location, 'id' | 'createdAt' | 'beforePhoto' | 'afterPhoto'>) => {
   try {
     const docRef = await addDoc(collection(db, 'locations'), {
-      ...locationData,
+      qrCodeId: locationData.qrCodeId,
+      locationName: locationData.locationName,
+      area: locationData.area,
+      supervisorName: locationData.supervisorName,
+      contactNumber: locationData.contactNumber,
+      locationType: locationData.locationType,
+      latitude: locationData.latitude,
+      longitude: locationData.longitude,
       createdAt: new Date()
     });
     return docRef.id;
