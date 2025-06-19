@@ -12,7 +12,7 @@ import EditQRPage from './pages/EditQRPage';
 import { Menu } from 'lucide-react';
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
